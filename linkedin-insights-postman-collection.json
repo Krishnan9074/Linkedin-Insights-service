@@ -1,0 +1,342 @@
+{
+  "info": {
+    "name": "LinkedIn Insights Microservice API",
+    "description": "API collection for LinkedIn Insights Microservice",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Pages",
+      "description": "Endpoints for LinkedIn pages",
+      "item": [
+        {
+          "name": "Get Page",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/pages/{{page_id}}?force_scrape=false",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pages", "{{page_id}}"],
+              "query": [
+                {
+                  "key": "force_scrape",
+                  "value": "false",
+                  "description": "Force scrape from LinkedIn even if in DB"
+                }
+              ]
+            },
+            "description": "Get LinkedIn page details by page ID"
+          }
+        },
+        {
+          "name": "List Pages",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/pages?name={{name}}&industry={{industry}}&min_followers={{min_followers}}&max_followers={{max_followers}}&page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pages"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "{{name}}",
+                  "description": "Filter by page name (partial match)",
+                  "disabled": true
+                },
+                {
+                  "key": "industry",
+                  "value": "{{industry}}",
+                  "description": "Filter by industry",
+                  "disabled": true
+                },
+                {
+                  "key": "min_followers",
+                  "value": "{{min_followers}}",
+                  "description": "Minimum follower count",
+                  "disabled": true
+                },
+                {
+                  "key": "max_followers",
+                  "value": "{{max_followers}}",
+                  "description": "Maximum follower count",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Items per page"
+                }
+              ]
+            },
+            "description": "List LinkedIn pages with filtering options"
+          }
+        },
+        {
+          "name": "Get Page Posts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/pages/{{page_id}}/posts?force_scrape=false",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pages", "{{page_id}}", "posts"],
+              "query": [
+                {
+                  "key": "force_scrape",
+                  "value": "false",
+                  "description": "Force scrape from LinkedIn even if in DB"
+                }
+              ]
+            },
+            "description": "Get posts from a LinkedIn page"
+          }
+        },
+        {
+          "name": "Get Page Employees",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/pages/{{page_id}}/employees?force_scrape=false",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pages", "{{page_id}}", "employees"],
+              "query": [
+                {
+                  "key": "force_scrape",
+                  "value": "false",
+                  "description": "Force scrape from LinkedIn even if in DB"
+                }
+              ]
+            },
+            "description": "Get employees from a LinkedIn page"
+          }
+        },
+        {
+          "name": "Scrape Page Data",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/pages/{{page_id}}/scrape",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pages", "{{page_id}}", "scrape"]
+            },
+            "description": "Scrape all data for a LinkedIn page (page details, posts, employees, comments)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Posts",
+      "description": "Endpoints for LinkedIn posts",
+      "item": [
+        {
+          "name": "List Posts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/posts?page_id={{page_id}}&post_type={{post_type}}&min_reactions={{min_reactions}}&from_date={{from_date}}&to_date={{to_date}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "posts"],
+              "query": [
+                {
+                  "key": "page_id",
+                  "value": "{{page_id}}",
+                  "description": "LinkedIn page ID"
+                },
+                {
+                  "key": "post_type",
+                  "value": "{{post_type}}",
+                  "description": "Filter by post type",
+                  "disabled": true
+                },
+                {
+                  "key": "min_reactions",
+                  "value": "{{min_reactions}}",
+                  "description": "Minimum total reactions",
+                  "disabled": true
+                },
+                {
+                  "key": "from_date",
+                  "value": "{{from_date}}",
+                  "description": "Filter from date (ISO format)",
+                  "disabled": true
+                },
+                {
+                  "key": "to_date",
+                  "value": "{{to_date}}",
+                  "description": "Filter to date (ISO format)",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "List LinkedIn posts for a specific page"
+          }
+        },
+        {
+          "name": "Get Post",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/posts/{{post_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "posts", "{{post_id}}"]
+            },
+            "description": "Get LinkedIn post by ID"
+          }
+        },
+        {
+          "name": "Get Post Comments",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/posts/{{post_id}}/comments?force_scrape=false",
+              "host": ["{{base_url}}"],
+              "path": ["api", "posts", "{{post_id}}", "comments"],
+              "query": [
+                {
+                  "key": "force_scrape",
+                  "value": "false",
+                  "description": "Force scrape from LinkedIn even if in DB"
+                }
+              ]
+            },
+            "description": "Get comments for a LinkedIn post"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Employees",
+      "description": "Endpoints for LinkedIn employees",
+      "item": [
+        {
+          "name": "List Employees",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/employees?company_page_id={{page_id}}&name={{name}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees"],
+              "query": [
+                {
+                  "key": "company_page_id",
+                  "value": "{{page_id}}",
+                  "description": "LinkedIn page ID"
+                },
+                {
+                  "key": "name",
+                  "value": "{{name}}",
+                  "description": "Filter by employee name (partial match)",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "List employees for a LinkedIn page"
+          }
+        },
+        {
+          "name": "Get Employee",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/employees/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "employees", "{{user_id}}"]
+            },
+            "description": "Get LinkedIn employee by user ID"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "description": "Endpoints for LinkedIn comments",
+      "item": [
+        {
+          "name": "List Comments",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/comments?post_id={{post_id}}&user_id={{user_id}}&parent_comment_id={{parent_comment_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "comments"],
+              "query": [
+                {
+                  "key": "post_id",
+                  "value": "{{post_id}}",
+                  "description": "LinkedIn post ID"
+                },
+                {
+                  "key": "user_id",
+                  "value": "{{user_id}}",
+                  "description": "Filter by user ID",
+                  "disabled": true
+                },
+                {
+                  "key": "parent_comment_id",
+                  "value": "{{parent_comment_id}}",
+                  "description": "Filter by parent comment ID (for replies)",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "List comments for a LinkedIn post"
+          }
+        },
+        {
+          "name": "Get Comment",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/comments/{{comment_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "comments", "{{comment_id}}"]
+            },
+            "description": "Get LinkedIn comment by ID"
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI",
+      "description": "Endpoints for AI insights",
+      "item": [
+        {
+          "name": "Get Page Gemini AI Summary",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/ai/summary/{{page_id}}?force_generate=false",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ai", "summary", "{{page_id}}"],
+              "query": [
+                {
+                  "key": "force_generate",
+                  "value": "false",
+                  "description": "Force regenerate AI summary"
+                }
+              ]
+            },
+            "description": "Get Gemini AI-generated summary for a LinkedIn page"
+          }
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "page_id",
+      "value": "deepsolv",
+      "type": "string"
+    }
+  ]
+} 

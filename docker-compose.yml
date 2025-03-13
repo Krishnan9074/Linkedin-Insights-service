@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: linkedin-insights-api
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017
+      - REDIS_HOST=redis
+      - LINKEDIN_EMAIL=${LINKEDIN_EMAIL:-}
+      - LINKEDIN_PASSWORD=${LINKEDIN_PASSWORD:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./app:/app/app
+    networks:
+      - linkedin-insights-network
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:5.0
+    container_name: linkedin-insights-mongodb
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - linkedin-insights-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:6.2-alpine
+    container_name: linkedin-insights-redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - linkedin-insights-network
+    restart: unless-stopped
+
+networks:
+  linkedin-insights-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  redis_data: 
