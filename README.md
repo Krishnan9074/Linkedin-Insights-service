@@ -73,6 +73,12 @@ uvicorn app.main:app --reload
 ```bash
 docker-compose up -d
 ```
+## API Documentation
+
+Once the application is running, access the API documentation at:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
+
 
 ## Main Endpoints
 
