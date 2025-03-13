@@ -74,23 +74,9 @@ uvicorn app.main:app --reload
 docker-compose up -d
 ```
 
-## API Documentation
-
-Once the application is running, access the API documentation at:
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
-
 ## Main Endpoints
 
 - `GET /api/pages/{page_id}` - Get details of a LinkedIn page
 - `GET /api/pages` - List pages with filtering options
 - `GET /api/pages/{page_id}/posts` - Get posts from a LinkedIn page
 - `GET /api/pages/{page_id}/employees` - Get employees of a LinkedIn page
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin feature-name`
-5. Submit a pull request 
